@@ -30,11 +30,22 @@ class SingletonModel(models.Model):
 
 class Master(SingletonModel):
     """
-    Tattoo artists main info
+    Tattoo artist's main page content
     """
     image = models.FileField(upload_to='images/', blank=True, null=True)
     description = models.TextField(max_length=255, blank=True, null=True)
     image_work = models.FileField(upload_to='images/', blank=True, null=True)
+
+
+class Info(SingletonModel):
+    """
+    Artist's info
+    """
+    name = models.CharField(max_length=124, blank=False, null=False)
+    info = models.TextField(max_length=255)
+    telegram = models.CharField(max_length=124)
+    vk = models.CharField(max_length=124)
+    phone_number = models.CharField(max_length=14)
 
 
 class Gallery(models.Model):
@@ -44,7 +55,7 @@ class Gallery(models.Model):
     image = models.FileField(upload_to='images/', blank=True, null=True)
 
 
-class Works(models.Model):
+class Work(models.Model):
     """
     All works
     """
@@ -81,6 +92,13 @@ class Application(models.Model):
     contacts = models.CharField(max_length=255, null=False, blank=False)
     tattoo_description = models.TextField(max_length=255, null=True, blank=True)
     sketch = models.FileField(upload_to='images/', blank=True, null=True)
+
+
+class Price(models.Model):
+    tatoo_image = models.FileField(upload_to='images/', blank=True, null=True)
+    price = models.IntegerField()
+
+
 
 
 # Create your models here.
