@@ -32,20 +32,36 @@ class Master(SingletonModel):
     """
     Tattoo artist's main page content
     """
+    name = models.CharField(max_length=120, default="Nati")
     image = models.FileField(upload_to='images/', blank=True, null=True)
     description = models.TextField(max_length=255, blank=True, null=True)
     image_work = models.FileField(upload_to='images/', blank=True, null=True)
+
+    class Meta:
+        verbose_name = "Страница мастера"
+        verbose_name_plural = "Страница мастера"
+
+    def __str__(self):
+        return self.name
+
 
 
 class Info(SingletonModel):
     """
     Artist's info
     """
-    name = models.CharField(max_length=124, blank=False, null=False)
+    name = models.CharField(max_length=124, blank=False, null=False, default="Nati")
     info = models.TextField(max_length=255)
     telegram = models.CharField(max_length=124)
     vk = models.CharField(max_length=124)
     phone_number = models.CharField(max_length=14)
+
+    class Meta:
+        verbose_name = "Информация о мастере"
+        verbose_name_plural = "Информация о мастере"
+
+    def __str__(self):
+        return self.name
 
 
 class Gallery(models.Model):
