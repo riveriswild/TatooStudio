@@ -95,7 +95,7 @@ class Review(models.Model):
     Clients' reviews
     """
     client_image = models.FileField(upload_to='images/', blank=True, null=True)
-    tatoo_image = models.FileField(upload_to='images/', blank=True, null=True)
+    tattoo_image = models.FileField(upload_to='images/', blank=True, null=True)
     client_name = models.CharField(max_length=124, verbose_name='Имя клиента')
     client_review = models.TextField(max_length=255, blank=True, null=True)   #TODO CHANGE BLANKS AND NULLS
 
@@ -111,7 +111,7 @@ class Application(models.Model):
 
 
 class Price(models.Model):
-    tatoo_image = models.FileField(upload_to='images/', blank=True, null=True)
+    tattoo_image = models.FileField(upload_to='images/', blank=True, null=True)
     price = models.IntegerField()
 
 
