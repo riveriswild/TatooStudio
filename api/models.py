@@ -70,6 +70,10 @@ class Gallery(models.Model):
     """
     image = models.FileField(upload_to='images/', blank=True, null=True)
 
+    def __str__(self):
+        return self.pk
+
+
 
 class Work(models.Model):
     """
@@ -89,6 +93,9 @@ class Work(models.Model):
     image = models.FileField(upload_to='images/', blank=True, null=True)
     image_status = models.CharField(choices=IMAGE_CHOICES, max_length=8, default=NEW, verbose_name='status')
 
+    def __str__(self):
+        return self.pk
+
 
 class Review(models.Model):
     """
@@ -98,6 +105,9 @@ class Review(models.Model):
     tattoo_image = models.FileField(upload_to='images/', blank=True, null=True)
     client_name = models.CharField(max_length=124, verbose_name='Имя клиента')
     client_review = models.TextField(max_length=255, blank=True, null=True)   #TODO CHANGE BLANKS AND NULLS
+
+    def __str__(self):
+        return self.client_name
 
 
 class Application(models.Model):
@@ -109,10 +119,16 @@ class Application(models.Model):
     tattoo_description = models.TextField(max_length=255, null=True, blank=True)
     sketch = models.FileField(upload_to='images/', blank=True, null=True)
 
+    def __str__(self):
+        return self.client_name
+
 
 class Price(models.Model):
     tattoo_image = models.FileField(upload_to='images/', blank=True, null=True)
     price = models.IntegerField()
+
+    def __str__(self):
+        return self.price
 
 
 
