@@ -53,7 +53,7 @@ class ApplicationSerializer(serializers.ModelSerializer):
 
 class PriceSerializer(serializers.ModelSerializer):
     """
-    Serializer for prices &
+    Serializer for prices
     """
     class Meta:
         model = Price
