@@ -9,7 +9,7 @@ from .serializers import MasterSerializer,InfoSerializer, GallerySerializer, \
 
 class MasterViewSet(viewsets.ModelViewSet):
     serializer_class = MasterSerializer
-    queryset = Master.objects.get(id=1)
+    queryset = Master.objects.all()
 
 
 class InfoViewSet(viewsets.ModelViewSet):
@@ -32,7 +32,7 @@ class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all()
 
 
-class ApplicationViewSet(viewsets.ModelView):
+class ApplicationViewSet(viewsets.ModelViewSet):
     serializer_class = ApplicationSerializer
     queryset = Application.objects.all()
 
