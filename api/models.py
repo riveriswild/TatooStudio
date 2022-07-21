@@ -70,6 +70,10 @@ class Gallery(models.Model):
     """
     image = models.FileField(upload_to='images/', blank=True, null=True)
 
+    class Meta:
+        verbose_name = "Галлерея"
+        verbose_name_plural = "Галлерея"
+
     def __str__(self):
         return self.pk
 
@@ -93,6 +97,10 @@ class Work(models.Model):
     image = models.FileField(upload_to='images/', blank=True, null=True)
     image_status = models.CharField(choices=IMAGE_CHOICES, max_length=8, default=NEW, verbose_name='status')
 
+    class Meta:
+        verbose_name = "Пример работы"
+        verbose_name_plural = "Примеры работ"
+
     def __str__(self):
         return self.pk
 
@@ -105,6 +113,10 @@ class Review(models.Model):
     tattoo_image = models.FileField(upload_to='images/', blank=True, null=True)
     client_name = models.CharField(max_length=124, verbose_name='Имя клиента')
     client_review = models.TextField(max_length=255, blank=True, null=True)   #TODO CHANGE BLANKS AND NULLS
+
+    class Meta:
+        verbose_name = "Отзыв"
+        verbose_name_plural = "Отзывы"
 
     def __str__(self):
         return self.client_name
@@ -119,6 +131,10 @@ class Application(models.Model):
     tattoo_description = models.TextField(max_length=255, null=True, blank=True)
     sketch = models.FileField(upload_to='images/', blank=True, null=True)
 
+    class Meta:
+        verbose_name = "Заявка"
+        verbose_name_plural = "Заявки"
+
     def __str__(self):
         return self.client_name
 
@@ -126,6 +142,10 @@ class Application(models.Model):
 class Price(models.Model):
     tattoo_image = models.FileField(upload_to='images/', blank=True, null=True)
     price = models.IntegerField()
+
+    class Meta:
+        verbose_name = "Цена"
+        verbose_name_plural = "Цены"
 
     def __str__(self):
         return self.price
