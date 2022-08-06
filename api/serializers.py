@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.conf import settings
-from .models import Master, Info, Gallery, Application, Price, Review, Work
+from .models import Master, Info, Gallery, Application, Price, Review, Work, FAQ
 
 
 class MasterSerializer(serializers.ModelSerializer):
@@ -58,3 +58,12 @@ class PriceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Price
         fields = ['tattoo_image', 'price']
+
+
+class FAQSerializer(serializers.ModelSerializer):
+    """
+    Serializer for prices
+    """
+    class Meta:
+        model = FAQ
+        fields = ['title', 'text', 'image']
