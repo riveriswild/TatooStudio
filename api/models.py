@@ -45,7 +45,6 @@ class Master(SingletonModel):
         return self.name
 
 
-
 class Info(SingletonModel):
     """
     Artist's info
@@ -76,7 +75,6 @@ class Gallery(models.Model):
 
     def __str__(self):
         return self.pk
-
 
 
 class Work(models.Model):
@@ -112,7 +110,7 @@ class Review(models.Model):
     client_image = models.FileField(upload_to='images/', blank=True, null=True)
     tattoo_image = models.FileField(upload_to='images/', blank=True, null=True)
     client_name = models.CharField(max_length=124, verbose_name='Имя клиента')
-    client_review = models.TextField(max_length=255, blank=True, null=True)   #TODO CHANGE BLANKS AND NULLS
+    client_review = models.TextField(max_length=600, blank=True, null=True)   # TODO CHANGE BLANKS AND NULLS
 
     class Meta:
         verbose_name = "Отзыв"
@@ -128,7 +126,7 @@ class Application(models.Model):
     """
     client_name = models.CharField(max_length=255, null=False, blank=False)
     contacts = models.CharField(max_length=255, null=False, blank=False)
-    tattoo_description = models.TextField(max_length=255, null=True, blank=True)
+    tattoo_description = models.TextField(max_length=600, null=True, blank=True)
     sketch = models.FileField(upload_to='images/', blank=True, null=True)
 
     class Meta:
@@ -141,7 +139,7 @@ class Application(models.Model):
 
 class Price(models.Model):
     tattoo_image = models.FileField(upload_to='images/', blank=True, null=True)
-    price = models.IntegerField()
+    price = models.CharField(max_length=255, null=False, blank=False)
 
     class Meta:
         verbose_name = "Цена"
@@ -151,6 +149,14 @@ class Price(models.Model):
         return self.price
 
 
+class FAQ(models.Model):
+    title = models.TextField(max_length=50, blank=True, null=True)
+    text = models.TextField(max_length=600, blank=True, null=True)
+    image = models.FileField(upload_to='images/', blank=True, null=True)
 
+    class Meta:
+        verbose_name = "FAQ"
+        verbose_name_plural = "FAQ"
 
-# Create your models here.
+    def __str__(self):
+        return self.title
