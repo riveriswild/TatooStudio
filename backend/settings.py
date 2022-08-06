@@ -28,7 +28,7 @@ SECRET_KEY = 'd0ayivno9kv0$^+@z*h48hc8)0&1c63@@xlol2o!l_*t!^lbbm'
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '.mydomain.com', 'localhost']
-
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Application definition
 
