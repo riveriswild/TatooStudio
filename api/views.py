@@ -1,10 +1,12 @@
 from django.shortcuts import render
-from rest_framework import viewsets
+from rest_framework import viewsets, status
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.response import Response
 
-from .models import Master, Info, Gallery, Work, Review, Application, Price
-from .serializers import MasterSerializer,InfoSerializer, GallerySerializer, \
+from .models import Master, Info, Gallery, Work, Review, Application, Price, FAQ
+from .serializers import MasterSerializer, InfoSerializer, GallerySerializer, \
     WorkSerializer, ReviewSerializer,\
-    ApplicationSerializer, PriceSerializer
+    ApplicationSerializer, PriceSerializer, FAQSerializer
 
 
 class MasterViewSet(viewsets.ModelViewSet):
@@ -12,11 +14,30 @@ class MasterViewSet(viewsets.ModelViewSet):
     serializer_class = MasterSerializer
     queryset = Master.objects.all()
 
+    def list(self, request, *args, **kwargs):
+        instance = self.get_queryset().first()
+        # using 'first' will retrieve first instance
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
+
 
 class InfoViewSet(viewsets.ModelViewSet):
     """ info """
     serializer_class = InfoSerializer
     queryset = Info.objects.all()
+
+    def list(self, request, *args, **kwargs):
+        instance = self.get_queryset().first()
+        # using 'first' will retrieve first instance
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
+
+class FAQViewSet(viewsets.ModelViewSet):
+    """ FAQ """
+    serializer_class = FAQSerializer
+    queryset = FAQ.objects.all()
+
+
 
 
 class GalleryViewSet(viewsets.ModelViewSet):
@@ -47,7 +68,3 @@ class PriceViewSet(viewsets.ModelViewSet):
     """ prices page """
     serializer_class = PriceSerializer
     queryset = Price.objects.all()
-
-
-
-# Create your views here.
