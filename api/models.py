@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.cache import cache
+from ckeditor.fields import RichTextField
 
 
 class SingletonModel(models.Model):
@@ -33,9 +34,9 @@ class Master(SingletonModel):
     Tattoo artist's main page content
     """
     name = models.CharField(max_length=120, default="Nati")
-    image = models.FileField(upload_to='images/', blank=True, null=True)
-    description = models.TextField(max_length=255, blank=True, null=True)
-    image_work = models.FileField(upload_to='images/', blank=True, null=True)
+    image = models.FileField(upload_to='images/', blank=True, null=True, verbose_name='Фото мастера')
+    description = models.TextField(blank=True, null=True, verbose_name="О себе для главной страницы")
+    image_work = models.FileField(upload_to='images/', blank=True, null=True, verbose_name="Пример работы на главной")
 
     class Meta:
         verbose_name = "Страница мастера"
@@ -50,14 +51,16 @@ class Info(SingletonModel):
     Artist's info
     """
     name = models.CharField(max_length=124, blank=False, null=False, default="Nati")
-    info = models.TextField(max_length=255)
+    info = models.TextField(verbose_name="Инфо для всплывающей плашки")
     telegram = models.CharField(max_length=124)
     vk = models.CharField(max_length=124)
     phone_number = models.CharField(max_length=14)
+    price_info_prim = models.TextField(blank=True, null=True, verbose_name="Инфо о ценах слева")
+    price_info_sec = models.TextField(blank=True, null=True, verbose_name="Инфо о ценах справа")
 
     class Meta:
-        verbose_name = "Информация о мастере"
-        verbose_name_plural = "Информация о мастере"
+        verbose_name = "Информация"
+        verbose_name_plural = "Информация"
 
     def __str__(self):
         return self.name
@@ -67,14 +70,15 @@ class Gallery(models.Model):
     """
     Image for a gallery
     """
+    name = models.CharField(max_length=124, blank=False, null=False, default="photo")
     image = models.FileField(upload_to='images/', blank=True, null=True)
 
     class Meta:
-        verbose_name = "Галлерея"
-        verbose_name_plural = "Галлерея"
+        verbose_name = "Галерея"
+        verbose_name_plural = "Галерея"
 
     def __str__(self):
-        return self.pk
+        return self.name
 
 
 class Work(models.Model):
@@ -91,26 +95,27 @@ class Work(models.Model):
         (OLD, 'old'),
         (SKETCH, 'sketch'),
     ]
-
+    name = models.CharField(max_length=124, blank=False, null=False, default="photo")
     image = models.FileField(upload_to='images/', blank=True, null=True)
     image_status = models.CharField(choices=IMAGE_CHOICES, max_length=8, default=NEW, verbose_name='status')
+
 
     class Meta:
         verbose_name = "Пример работы"
         verbose_name_plural = "Примеры работ"
 
     def __str__(self):
-        return self.pk
+        return self.name
 
 
 class Review(models.Model):
     """
     Clients' reviews
     """
-    client_image = models.FileField(upload_to='images/', blank=True, null=True)
-    tattoo_image = models.FileField(upload_to='images/', blank=True, null=True)
+    client_image = models.FileField(upload_to='images/', blank=True, null=True, verbose_name="Фото клиента")
+    tattoo_image = models.FileField(upload_to='images/', blank=True, null=True, verbose_name="Фото тату клиента")
     client_name = models.CharField(max_length=124, verbose_name='Имя клиента')
-    client_review = models.TextField(max_length=600, blank=True, null=True)   # TODO CHANGE BLANKS AND NULLS
+    client_review = models.TextField(blank=True, null=True, verbose_name="Текст отзыва")   # TODO CHANGE BLANKS AND NULLS
 
     class Meta:
         verbose_name = "Отзыв"
@@ -124,10 +129,10 @@ class Application(models.Model):
     """
     Application form for a tattoo
     """
-    client_name = models.CharField(max_length=255, null=False, blank=False)
-    contacts = models.CharField(max_length=255, null=False, blank=False)
-    tattoo_description = models.TextField(max_length=600, null=True, blank=True)
-    sketch = models.FileField(upload_to='images/', blank=True, null=True)
+    client_name = models.CharField(max_length=255, null=False, blank=False, verbose_name="Имя клиента")
+    contacts = models.CharField(max_length=255, null=False, blank=False, verbose_name="Контакты")
+    tattoo_description = models.TextField(null=True, blank=True, verbose_name="Описание тату")
+    sketch = models.FileField(upload_to='images/', blank=True, null=True, verbose_name="Эскиз")
 
     class Meta:
         verbose_name = "Заявка"
@@ -138,8 +143,8 @@ class Application(models.Model):
 
 
 class Price(models.Model):
-    tattoo_image = models.FileField(upload_to='images/', blank=True, null=True)
-    price = models.CharField(max_length=255, null=False, blank=False)
+    tattoo_image = models.FileField(upload_to='images/', blank=True, null=True, verbose_name="Пример тату")
+    price = models.CharField(max_length=255, null=False, blank=False, verbose_name="Цена")
 
     class Meta:
         verbose_name = "Цена"
@@ -150,9 +155,9 @@ class Price(models.Model):
 
 
 class FAQ(models.Model):
-    title = models.TextField(max_length=50, blank=True, null=True)
-    text = models.TextField(max_length=600, blank=True, null=True)
-    image = models.FileField(upload_to='images/', blank=True, null=True)
+    title = models.TextField(max_length=50, blank=True, null=True, verbose_name="Заголовок")
+    text = models.TextField(blank=True, null=True, verbose_name="Текст")
+    image = models.FileField(upload_to='images/', blank=True, null=True, verbose_name="Изображение")
 
     class Meta:
         verbose_name = "FAQ"
