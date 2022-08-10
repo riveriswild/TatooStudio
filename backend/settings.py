@@ -30,6 +30,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', '.mydomain.com', 'localhost']
 CORS_ALLOW_ALL_ORIGINS = True
 
+DEFAULT_AUTO_FIELD= 'django.db.models.AutoField'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -43,6 +45,7 @@ INSTALLED_APPS = [
     # third-party apps
     "rest_framework",
     'corsheaders',
+    'ckeditor',
 
     # internal apps
 
@@ -131,7 +134,10 @@ USE_TZ = True
 STATIC_URL = '/static/'                  # INFO STATIC
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
+    os.path.join(BASE_DIR,"assets")
 ]
+STATIC_ROOT=os.path.join(BASE_DIR, "static_cdn","static_root")
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "static_cdn","media_root")
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static-root")
+CKEDITOR_BASEPATH = "backend/static_cdn/static_root/ckeditor/ckeditor"
