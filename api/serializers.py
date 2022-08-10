@@ -15,7 +15,7 @@ class MasterSerializer(serializers.ModelSerializer):
 class InfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Info
-        fields = ["name", "info", "telegram", "vk", "phone_number"]
+        fields = ["name", "info", "telegram", "vk", "phone_number", 'price_info_prim', 'price_info_sec']
 
 
 class GallerySerializer(serializers.ModelSerializer):
@@ -30,7 +30,7 @@ class GallerySerializer(serializers.ModelSerializer):
 class WorkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Work
-        fields = ['image', 'image_status']
+        fields = ['image', 'image_status', 'name']
 
 
 class ReviewSerializer(serializers.ModelSerializer):
