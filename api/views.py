@@ -32,6 +32,7 @@ class InfoViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
 
+
 class FAQViewSet(viewsets.ModelViewSet):
     """ FAQ """
     serializer_class = FAQSerializer
