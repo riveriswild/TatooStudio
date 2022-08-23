@@ -141,3 +141,35 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "static_cdn","media_root")
 
 CKEDITOR_BASEPATH = "backend/static_cdn/static_root/ckeditor/ckeditor"
+
+# EMAIL CONFIGURATIONS SET UP
+
+EMAIL_HOST = config(‘EMAIL_HOST’, ‘’)
+
+EMAIL_HOST_USER = config(‘EMAIL_HOST_USER’, ‘’)
+
+EMAIL_HOST_PASSWORD = config(‘EMAIL_HOST_PASSWORD’, ‘’)
+
+EMAIL_PORT = config(‘EMAIL_PORT’, ‘’)
+
+EMAIL_USE_TLS: config(‘EMAIL_USE_TLS’, ‘’)
+
+EMAIL_USE_SSL: config(‘EMAIL_USE_SSL’, ‘’)
+
+EMAIL_BACKEND = config(‘EMAIL_BACKEND’, ‘’)
+
+SENDER_EMAIL = config(‘SENDER_EMAIL’, ‘’)
+
+# CELERY PROJECT SET UP
+
+CELERY_BROKER_URL = config(‘CELERY_BROKER_URL’, ‘’)
+
+CELERY_RESULT_BACKEND = config(‘CELERY_RESULT_BACKEND’, ‘’)
+
+CELERY_ACCEPT_CONTENT = [‘application/json’]
+
+CELERY_TASK_SERIALIZER = config(‘CELERY_TASK_SERIALIZER’, ‘’)
+
+CELERY_RESULT_SERIALIZER = config(‘CELERY_RESULT_SERIALIZER’, ‘’)
+
+CELERY_TIMEZONE = config(‘CELERY_TIMEZONE’, ‘’)
