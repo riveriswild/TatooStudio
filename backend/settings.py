@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -162,14 +163,21 @@ SENDER_EMAIL = config(‘SENDER_EMAIL’, ‘’)
 
 # CELERY PROJECT SET UP
 
-CELERY_BROKER_URL = config(‘CELERY_BROKER_URL’, ‘’)
+# CELERY_BROKER_URL = config(‘CELERY_BROKER_URL’, ‘’)
 
-CELERY_RESULT_BACKEND = config(‘CELERY_RESULT_BACKEND’, ‘’)
+# CELERY_RESULT_BACKEND = config(‘CELERY_RESULT_BACKEND’, ‘’)
 
-CELERY_ACCEPT_CONTENT = [‘application/json’]
+# CELERY_ACCEPT_CONTENT = [‘application/json’]
 
-CELERY_TASK_SERIALIZER = config(‘CELERY_TASK_SERIALIZER’, ‘’)
+# CELERY_TASK_SERIALIZER = config(‘CELERY_TASK_SERIALIZER’, ‘’)
 
-CELERY_RESULT_SERIALIZER = config(‘CELERY_RESULT_SERIALIZER’, ‘’)
+# CELERY_RESULT_SERIALIZER = config(‘CELERY_RESULT_SERIALIZER’, ‘’)
 
-CELERY_TIMEZONE = config(‘CELERY_TIMEZONE’, ‘’)
+# CELERY_TIMEZONE = config(‘CELERY_TIMEZONE’, ‘’)
+
+# celery
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
