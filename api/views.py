@@ -39,8 +39,6 @@ class FAQViewSet(viewsets.ModelViewSet):
     queryset = FAQ.objects.all()
 
 
-
-
 class GalleryViewSet(viewsets.ModelViewSet):
     """ gallery """
     serializer_class = GallerySerializer
