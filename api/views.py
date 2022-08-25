@@ -9,6 +9,20 @@ from .serializers import MasterSerializer, InfoSerializer, GallerySerializer, \
     ApplicationSerializer, PriceSerializer, FAQSerializer
 
 
+def send_notification_to_master(instance):
+    application = Application.objects.get(id=instance.id)
+    try:
+        subject = "Новая заявка"
+        to = ['{}'.format(  )]   # email here
+        from_email = # email here
+        email_content = application
+        message = get_template('email/email.html').render(application) #TODO add template
+        msg = EmailMessage(subject, message, to=to, from_email=from_email)
+        msg.content_subtype = 'html'
+        msg.send()
+    except IOError as e:
+        return e
+
 class MasterViewSet(viewsets.ModelViewSet):
     """ main page """
     serializer_class = MasterSerializer
