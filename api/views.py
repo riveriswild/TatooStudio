@@ -75,6 +75,14 @@ class ApplicationViewSet(viewsets.ModelViewSet):
     """ tattoo application """
     serializer_class = ApplicationSerializer
     queryset = Application.objects.all()
+    
+    def perform_create(self, serializer):
+        instance = serializer.save()
+        try:
+            send_email_confirmation(modified=instance)
+            print('An email has been sent to the customer.')
+        except IOError as e:
+            return e
 
 
 class PriceViewSet(viewsets.ModelViewSet):
