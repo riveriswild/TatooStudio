@@ -7,8 +7,11 @@ from django.core.mail import send_mail
 from .models import Application
 
 def send_email(app_info):
+    date_time = app_info.datetime
+    formated_date = date_time.strftime("%Y-%m-%d %H:%M")
+
     subject = 'New application'
-    message = f'You have a new application from {app_info.client_name} at {app_info.datetime}. Text: {app_info.tattoo_description}'
+    message = f'You have a new application from {app_info.client_name} at {formated_date}. Text: {app_info.tattoo_description}'
     email_from = settings.EMAIL_HOST_USER
     recipient_list = ['riveriswild.rw@gmail.com', ]
     print('sent')

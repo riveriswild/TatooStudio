@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.db import models
 from django.core.cache import cache
 from ckeditor.fields import RichTextField
@@ -133,7 +134,7 @@ class Application(models.Model):
     contacts = models.CharField(max_length=255, null=False, blank=False, verbose_name="Контакты")
     tattoo_description = models.TextField(null=True, blank=True, verbose_name="Описание тату")
     sketch = models.FileField(upload_to='images/', blank=True, null=True, verbose_name="Эскиз")
-    datetime = models.DateTimeField(auto_now_add=True)
+    datetime = models.DateTimeField(auto_now_add=True)   # TODO CHANGE FORMAT
 
     class Meta:
         verbose_name = "Заявка"
