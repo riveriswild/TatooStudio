@@ -145,21 +145,12 @@ CKEDITOR_BASEPATH = "backend/static_cdn/static_root/ckeditor/ckeditor"
 
 # EMAIL CONFIGURATIONS SET UP
 
-EMAIL_HOST = config(‘EMAIL_HOST’, ‘’)
-
-EMAIL_HOST_USER = config(‘EMAIL_HOST_USER’, ‘’)
-
-EMAIL_HOST_PASSWORD = config(‘EMAIL_HOST_PASSWORD’, ‘’)
-
-EMAIL_PORT = config(‘EMAIL_PORT’, ‘’)
-
-EMAIL_USE_TLS: config(‘EMAIL_USE_TLS’, ‘’)
-
-EMAIL_USE_SSL: config(‘EMAIL_USE_SSL’, ‘’)
-
-EMAIL_BACKEND = config(‘EMAIL_BACKEND’, ‘’)
-
-SENDER_EMAIL = config(‘SENDER_EMAIL’, ‘’)
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'some_email@gmail.com' #sender's email-id
+EMAIL_HOST_PASSWORD = 'some_password' #password associated with above email-id
 
 # CELERY PROJECT SET UP
 
