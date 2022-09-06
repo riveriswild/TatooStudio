@@ -9,19 +9,19 @@ from .serializers import MasterSerializer, InfoSerializer, GallerySerializer, \
     ApplicationSerializer, PriceSerializer, FAQSerializer
 
 
-def send_notification_to_master(instance):
-    application = Application.objects.get(id=instance.id)
-    try:
-        subject = "Новая заявка"
-        to = ['{}'.format(  )]   # email here
-        from_email = # email here
-        email_content = application
-        message = get_template('email/email.html').render(application) #TODO add template
-        msg = EmailMessage(subject, message, to=to, from_email=from_email)
-        msg.content_subtype = 'html'
-        msg.send()
-    except IOError as e:
-        return e
+# def send_notification_to_master(instance):
+#     application = Application.objects.get(id=instance.id)
+#     try:
+#         subject = "Новая заявка"
+#         to = ['{}'.format(  )]   # email here
+#         from_email = # email here
+#         email_content = application
+#         message = get_template('email/email.html').render(application) #TODO add template
+#         msg = EmailMessage(subject, message, to=to, from_email=from_email)
+#         msg.content_subtype = 'html'
+#         msg.send()
+#     except IOError as e:
+#         return e
 
 class MasterViewSet(viewsets.ModelViewSet):
     """ main page """
@@ -76,13 +76,13 @@ class ApplicationViewSet(viewsets.ModelViewSet):
     serializer_class = ApplicationSerializer
     queryset = Application.objects.all()
     
-    def perform_create(self, serializer):
-        instance = serializer.save()
-        try:
-            send_email_confirmation(modified=instance)
-            print('An email has been sent to the customer.')
-        except IOError as e:
-            return e
+    # def perform_create(self, serializer):
+    #     instance = serializer.save()
+    #     try:
+    #         send_email_confirmation(modified=instance)
+    #         print('An email has been sent to the customer.')
+    #     except IOError as e:
+    #         return e
 
 
 class PriceViewSet(viewsets.ModelViewSet):

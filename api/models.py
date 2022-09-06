@@ -132,7 +132,8 @@ class Application(models.Model):
     client_name = models.CharField(max_length=255, null=False, blank=False, verbose_name="Имя клиента")
     contacts = models.CharField(max_length=255, null=False, blank=False, verbose_name="Контакты")
     tattoo_description = models.TextField(null=True, blank=True, verbose_name="Описание тату")
-    sketch = models.FileField(upload_to='images/', blank=True, null=True, verbose_name="Эскиз")  #TODO add datetime
+    sketch = models.FileField(upload_to='images/', blank=True, null=True, verbose_name="Эскиз")
+    datetime = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = "Заявка"
