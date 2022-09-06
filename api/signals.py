@@ -8,7 +8,7 @@ from .models import Application
 
 def send_email(app_info):
     subject = 'New application'
-    message = f'You have a new application from {app_info.client_name}'
+    message = f'You have a new application from {app_info.client_name} at {app_info.datetime}. Text: {app_info.tattoo_description}'
     email_from = settings.EMAIL_HOST_USER
     recipient_list = ['riveriswild.rw@gmail.com', ]
     print('sent')
