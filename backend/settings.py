@@ -148,8 +148,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'some_email@gmail.com' #sender's email-id
-EMAIL_HOST_PASSWORD = 'some_password' #password associated with above email-id
+EMAIL_HOST_USER = 'riveriswild.rw@gmail.com' #sender's email-id
+EMAIL_HOST_PASSWORD = 'hmnxbfgschximiss' #password associated with above email-id
 
 # CELERY PROJECT SET UP
 
